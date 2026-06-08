@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "cddl",
+      "camelcase": "CDDL",
+      "title": "CDDL",
+      "scope": "source.cddl",
+      "file-types": [
+        "cddl"
+      ],
+      "injection-regex": "^cddl$",
+      "class-name": "TreeSitterCddl"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT OR Apache-2.0",
+    "description": "Tree-sitter grammar for CDDL, the Concise Data Definition Language for CBOR and JSON data structures.",
+    "authors": [
+      {
+        "name": "Steven Johnson",
+        "email": "steven.johnson@sakuraindustries.net",
+        "url": "https://sakuraindustries.net"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/Sakura-Industries-LLC/tree-sitter-cddl",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "java": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": true
+  }
+}
