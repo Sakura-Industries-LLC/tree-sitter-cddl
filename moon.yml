@@ -171,10 +171,10 @@ tasks:
   binding-test-go:
     deps:
       - "grammar-generate"
-    command: "go"
+    command: "bash"
     args:
-      - "test"
-      - "./bindings/go/"
+      - "-c"
+      - "go mod tidy && go test ./bindings/go/"
     options:
       runInCI: true
       outputStyle: "stream"
