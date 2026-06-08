@@ -190,7 +190,7 @@ tasks:
     command: "bash"
     args:
       - "-c"
-      - "pip install -e . && python -m pytest bindings/python/tests/"
+      - "pip install pytest . && python -m pytest bindings/python/tests/"
     options:
       runInCI: true
       outputStyle: "stream"
