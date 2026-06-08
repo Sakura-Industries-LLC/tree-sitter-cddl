@@ -2,4 +2,8 @@ FROM tree-sitter-cddl-tools:04-tree-sitter
 
 RUN mkdir /repo
 
+# Tree-sitter config for native builds — tells the CLI where the parser lives
+RUN mkdir -p /root/.tree-sitter \
+    && printf '{"parser-directories":["/repo"]}' > /root/.tree-sitter/config.json
+
 WORKDIR /repo

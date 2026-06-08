@@ -2,8 +2,8 @@ name = "rumdl"
 type = "cli"
 
 [platform.linux]
-download-file = "rumdl-v{version}-{arch}-unknown-linux-{libc}.tar.gz"
-checksum-file = "rumdl-v{version}-{arch}-unknown-linux-{libc}.tar.gz.sha256"
+download-file = "rumdl-v{version}-{arch}-unknown-linux-gnu.tar.gz"
+checksum-file = "rumdl-v{version}-{arch}-unknown-linux-gnu.tar.gz.sha256"
 
 [platform.macos]
 download-file = "rumdl-v{version}-{arch}-apple-darwin.tar.gz"

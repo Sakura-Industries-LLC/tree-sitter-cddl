@@ -28,6 +28,7 @@ RUN set -eux; \
         libzstd-dev \
         make \
         netbase \
+        emscripten \
         tk-dev \
         tzdata \
         uuid-dev \
