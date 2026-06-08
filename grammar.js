@@ -58,6 +58,8 @@ export default grammar({
 
     generic_params: ($) => seq("<", commaSep1($.identifier), ">"),
 
+    generic_args: ($) => seq("<", commaSep1($.identifier), ">"),
+
     expression: ($) =>
       choice(
         $.choice_expression,
@@ -78,8 +80,12 @@ export default grammar({
 
     ctlop_expression: ($) => seq($.primary, $.ctlop, $.primary),
 
+    parameterized_reference: ($) =>
+      seq($.reference, $.generic_args),
+
     primary: ($) =>
       choice(
+        $.parameterized_reference,
         $.reference,
         $.number,
         $.string,

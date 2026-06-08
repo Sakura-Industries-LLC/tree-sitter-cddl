@@ -118,6 +118,21 @@
     }
   },
   {
+    "type": "generic_args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "generic_params",
     "named": true,
     "fields": {},
@@ -224,6 +239,25 @@
     }
   },
   {
+    "type": "parameterized_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "generic_args",
+          "named": true
+        },
+        {
+          "type": "reference",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "paren_expression",
     "named": true,
     "fields": {},
@@ -260,6 +294,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "parameterized_reference",
           "named": true
         },
         {
