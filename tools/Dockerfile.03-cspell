@@ -1,0 +1,6 @@
+FROM tree-sitter-cddl-tools:02-rust
+
+ARG CSPELL_VERSION
+
+RUN npm install --global cspell@${CSPELL_VERSION} \
+    && test -x /root/.proto/bin/cspell

@@ -1,0 +1,16 @@
+FROM tree-sitter-cddl-tools:00-base-os
+
+ARG PROTO_VERSION
+
+COPY .prototools /toolchain/
+COPY .proto /toolchain/.proto
+
+ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
+ENV MOON_TOOLCHAIN_FORCE_GLOBALS=true
+
+# install proto toolchain manager
+#   and every tool pinned in .prototools in one cacheable layer
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- ${PROTO_VERSION} --yes \
+    && proto install \
+    && npm config set prefix /root/.proto \
+    && rm -rf /root/.proto/cache /root/.proto/temp

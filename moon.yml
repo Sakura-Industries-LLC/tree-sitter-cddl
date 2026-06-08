@@ -1,0 +1,138 @@
+tasks:
+  fix:
+    deps:
+      - "root:markdown-fix"
+    options:
+      runInCI: false
+
+  ci:
+    deps:
+      - "root:markdown-check"
+      - "root:spell-check"
+      - "root:grammar-generate"
+      - "root:grammar-build"
+      - "root:grammar-test"
+    options:
+      runInCI: true
+
+  markdown-check:
+    command: "rumdl"
+    args:
+      - "check"
+      - "."
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "**/*.md"
+      - "**/*.mdx"
+      - "**/*.markdown"
+      - "!**/node_modules/**"
+
+  spell-check:
+    command: "cspell"
+    args:
+      - "lint"
+      - "--config"
+      - "cspell.json"
+      - "--no-progress"
+      - "."
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "**/*.c"
+      - "**/*.h"
+      - "**/*.js"
+      - "**/*.json"
+      - "**/*.md"
+      - "**/*.markdown"
+      - "**/*.scm"
+      - "**/*.toml"
+      - "**/*.yaml"
+      - "**/*.yml"
+      - "!**/node_modules/**"
+      - "!**/target/**"
+      - "!**/build/**"
+      - "cspell.json"
+      - ".config/dictionaries/project.dic"
+
+  markdown-fix:
+    command: "rumdl"
+    args:
+      - "check"
+      - "--fix"
+      - "."
+    options:
+      runInCI: false
+    inputs:
+      - "**/*.md"
+      - "**/*.mdx"
+      - "**/*.markdown"
+      - "!**/node_modules/**"
+
+  grammar-generate:
+    command: "tree-sitter"
+    args:
+      - "generate"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "grammar.js"
+      - "tree-sitter.json"
+      - "src/**"
+      - "!src/parser.c"
+      - "!src/tree_sitter/**"
+
+  grammar-build:
+    deps:
+      - "grammar-generate"
+    command: "tree-sitter"
+    args:
+      - "build"
+      - "--wasm"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "grammar.js"
+      - "src/parser.c"
+      - "src/tree_sitter/**"
+
+  grammar-build-native:
+    deps:
+      - "grammar-generate"
+    command: "tree-sitter"
+    args:
+      - "build"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "grammar.js"
+      - "src/parser.c"
+      - "src/tree_sitter/**"
+
+  grammar-test:
+    deps:
+      - "grammar-build-native"
+    command: "tree-sitter"
+    args:
+      - "test"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "grammar.js"
+      - "src/**"
+      - "corpus/**"
+      - "test/**"
+
+  docker-cache-dir:
+    command: "mkdir"
+    args:
+      - "-p"
+      - ".moon/docker-cache"
+    options:
+      runInCI: false

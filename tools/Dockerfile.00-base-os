@@ -1,0 +1,41 @@
+ARG DEBIAN_TAG
+FROM debian:${DEBIAN_TAG}
+
+# ensure local toolchain bins are preferred over distribution bins
+ENV PATH=/usr/local/bin:$PATH
+
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        bash \
+        ca-certificates \
+        curl \
+        dpkg-dev \
+        gcc \
+        git \
+        gnupg \
+        libbluetooth-dev \
+        libbz2-dev \
+        libc6-dev \
+        libdb-dev \
+        libffi-dev \
+        libgdbm-dev \
+        liblzma-dev \
+        libncursesw5-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        libssl-dev \
+        libzstd-dev \
+        make \
+        netbase \
+        tk-dev \
+        tzdata \
+        uuid-dev \
+        wget \
+        xz-utils \
+        zlib1g-dev \
+    ; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /toolchain

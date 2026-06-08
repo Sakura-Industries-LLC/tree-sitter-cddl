@@ -1,0 +1,6 @@
+FROM tree-sitter-cddl-tools:03-cspell
+
+ARG TREE_SITTER_CLI_VERSION
+
+RUN npm install --global tree-sitter-cli@${TREE_SITTER_CLI_VERSION} \
+    && test -x /root/.proto/bin/tree-sitter

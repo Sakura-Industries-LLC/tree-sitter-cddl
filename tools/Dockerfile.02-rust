@@ -1,0 +1,16 @@
+FROM tree-sitter-cddl-tools:01-proto
+
+ENV CARGO_HOME=/root/.cargo
+ENV RUSTUP_HOME=/root/.rustup
+ENV PATH="$CARGO_HOME/bin:$PATH"
+
+ARG BINSTALL_VERSION
+ARG NEXTEST_VERSION
+ARG CARGO_DENY_VERSION
+
+# install nightly rustfmt, binstall & nextest
+RUN rustup toolchain install nightly --profile minimal -c rustfmt \
+    && curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash -s -- --version ${BINSTALL_VERSION} \
+    && cargo binstall cargo-nextest --version ${NEXTEST_VERSION} --secure --no-confirm \
+    && cargo binstall cargo-deny --version ${CARGO_DENY_VERSION} --secure --no-confirm \
+    && rm -rf /root/.cargo/registry /root/.cargo/git /root/.rustup/downloads /root/.rustup/tmp

@@ -1,0 +1,25 @@
+name = "rumdl"
+type = "cli"
+
+[platform.linux]
+download-file = "rumdl-v{version}-{arch}-unknown-linux-{libc}.tar.gz"
+checksum-file = "rumdl-v{version}-{arch}-unknown-linux-{libc}.tar.gz.sha256"
+
+[platform.macos]
+download-file = "rumdl-v{version}-{arch}-apple-darwin.tar.gz"
+checksum-file = "rumdl-v{version}-{arch}-apple-darwin.tar.gz.sha256"
+
+[platform.windows]
+download-file = "rumdl-v{version}-{arch}-pc-windows-msvc.zip"
+checksum-file = "rumdl-v{version}-{arch}-pc-windows-msvc.zip.sha256"
+
+[install]
+download-url = "https://github.com/rvben/rumdl/releases/download/v{version}/{download_file}"
+checksum-url = "https://github.com/rvben/rumdl/releases/download/v{version}/{checksum_file}"
+
+[install.exes.rumdl]
+exe-path = "rumdl"
+primary = true
+
+[resolve]
+git-url = "https://github.com/rvben/rumdl"

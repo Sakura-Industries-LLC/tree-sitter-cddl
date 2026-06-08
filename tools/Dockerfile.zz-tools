@@ -1,0 +1,5 @@
+FROM tree-sitter-cddl-tools:04-tree-sitter
+
+RUN mkdir /repo
+
+WORKDIR /repo

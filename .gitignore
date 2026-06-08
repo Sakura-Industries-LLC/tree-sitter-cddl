@@ -46,3 +46,10 @@ zig-out/
 *.tgz
 *.zip
 *.jar
+
+# Moon cache
+.moon/cache/
+.moon/docker-cache/
+
+# Tool builds
+tools/target/

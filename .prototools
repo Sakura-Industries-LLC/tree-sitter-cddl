@@ -1,0 +1,8 @@
+moon = "2.3.2"
+rumdl = "0.2.9"
+node = "26.3.0"
+npm = "11.16.0"
+rust = "1.96.0"
+
+[plugins.tools]
+rumdl = "file://.proto/plugins/rumdl.toml"
