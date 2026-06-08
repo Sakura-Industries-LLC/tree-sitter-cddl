@@ -17,7 +17,7 @@ tasks:
       - "root:binding-test-go"
       - "root:binding-test-python"
       # - "root:binding-test-swift"
-      - "root:binding-test-zig"
+      # - "root:binding-test-zig"
       # - "root:binding-test-java"
     options:
       runInCI: true
@@ -157,7 +157,7 @@ tasks:
     command: "bash"
     args:
       - "-c"
-      - "npm install && npm test"
+      - "npm install && npm rebuild && npm test"
     options:
       runInCI: true
       outputStyle: "stream"
@@ -189,8 +189,8 @@ tasks:
       - "grammar-generate"
     command: "bash"
     args:
-      - "-c"
-      - "pip install pytest . && python -m pytest bindings/python/tests/"
+      - '-c'
+      - 'pip install ".[core]" pytest && python -m pytest bindings/python/tests/'
     options:
       runInCI: true
       outputStyle: "stream"

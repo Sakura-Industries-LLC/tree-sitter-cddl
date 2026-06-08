@@ -53,3 +53,4 @@ zig-out/
 
 # Tool builds
 tools/target/
+**/__pycache__/*
