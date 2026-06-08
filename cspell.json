@@ -35,6 +35,7 @@
         "target/**",
         "build/**",
         "node_modules/**",
-        "bindings/**"
+        "bindings/**",
+        "go.sum"
     ]
 }

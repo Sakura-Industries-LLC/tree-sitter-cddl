@@ -17,6 +17,8 @@ codepoint
 codepoints
 curlrc
 ctlop
+davecgh
+difflib
 dntls
 DNTLS
 doclint
@@ -29,6 +31,7 @@ dynamiclib
 elisp
 emscripten
 fvisibility
+gopkg
 hexlc
 hexuc
 implib
@@ -47,6 +50,7 @@ libstdc
 libzstd
 LINKSHARED
 mavenplugins
+mattn
 msvc
 netbase
 nextest
@@ -57,6 +61,7 @@ noqualifier
 parser
 PCLIBDIR
 pinentry
+pmezard
 prebuilds
 prefp
 prefpseq
@@ -78,6 +83,7 @@ soname
 SONAME
 SOVERSION
 SSIZE
+stretchr
 struct
 structs
 supertypes
