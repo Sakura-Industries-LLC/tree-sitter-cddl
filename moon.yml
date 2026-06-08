@@ -157,7 +157,7 @@ tasks:
     command: "bash"
     args:
       - "-c"
-      - "npm install && npm rebuild && npm test"
+      - "npm install && CXXFLAGS='-std=c++20' npm rebuild && npm test"
     options:
       runInCI: true
       outputStyle: "stream"
