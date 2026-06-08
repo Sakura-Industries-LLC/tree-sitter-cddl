@@ -1,0 +1,29 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "zig"
+type = "cli"
+
+[platform.linux]
+archive-prefix = "zig-{arch}-linux-{version}"
+download-file = "zig-{arch}-linux-{version}.tar.xz"
+checksum-file = "zig-{arch}-linux-{version}.tar.xz.minisig"
+
+[platform.macos]
+archive-prefix = "zig-{arch}-macos-{version}"
+download-file = "zig-{arch}-macos-{version}.tar.xz"
+checksum-file = "zig-{arch}-macos-{version}.tar.xz.minisig"
+
+[platform.windows]
+archive-prefix = "zig-{arch}-windows-{version}"
+download-file = "zig-{arch}-windows-{version}.zip"
+checksum-file = "zig-{arch}-windows-{version}.zip.minisig"
+
+[install]
+checksum-public-key = "RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U"
+checksum-url = "https://ziglang.org/download/{version}/{checksum_file}"
+download-url = "https://ziglang.org/download/{version}/{download_file}"
+unpack = true
+
+[resolve]
+git-url = "https://github.com/ziglang/zig"

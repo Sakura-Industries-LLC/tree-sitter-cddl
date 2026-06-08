@@ -12,6 +12,13 @@ tasks:
       - "root:grammar-generate"
       - "root:grammar-build"
       - "root:grammar-test"
+      - "root:binding-test-rust"
+      - "root:binding-test-node"
+      - "root:binding-test-go"
+      - "root:binding-test-python"
+      # - "root:binding-test-swift"
+      - "root:binding-test-zig"
+      # - "root:binding-test-java"
     options:
       runInCI: true
 
@@ -128,6 +135,114 @@ tasks:
       - "src/**"
       - "corpus/**"
       - "test/**"
+
+  binding-test-rust:
+    deps:
+      - "grammar-generate"
+    command: "cargo"
+    args:
+      - "test"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "src/**"
+      - "bindings/rust/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+
+  binding-test-node:
+    deps:
+      - "grammar-generate"
+    command: "bash"
+    args:
+      - "-c"
+      - "npm install && npm test"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "src/**"
+      - "bindings/node/**"
+      - "binding.gyp"
+      - "package.json"
+      - "package-lock.json"
+
+  binding-test-go:
+    deps:
+      - "grammar-generate"
+    command: "go"
+    args:
+      - "test"
+      - "./bindings/go/"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "src/**"
+      - "bindings/go/**"
+      - "go.mod"
+      - "go.sum"
+
+  binding-test-python:
+    deps:
+      - "grammar-generate"
+    command: "bash"
+    args:
+      - "-c"
+      - "pip install -e . && python -m pytest bindings/python/tests/"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "src/**"
+      - "bindings/python/**"
+      - "setup.py"
+      - "pyproject.toml"
+
+  binding-test-swift:
+    deps:
+      - "grammar-generate"
+    command: "swift"
+    args:
+      - "test"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "src/**"
+      - "bindings/swift/**"
+      - "Package.swift"
+
+  binding-test-zig:
+    deps:
+      - "grammar-generate"
+    command: "zig"
+    args:
+      - "build"
+      - "test"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "src/**"
+      - "bindings/zig/**"
+      - "build.zig"
+      - "build.zig.zon"
+
+  binding-test-java:
+    deps:
+      - "grammar-generate"
+    command: "mvn"
+    args:
+      - "test"
+    options:
+      runInCI: true
+      outputStyle: "stream"
+    inputs:
+      - "src/**"
+      - "bindings/java/**"
+      - "pom.xml"
 
   docker-cache-dir:
     command: "mkdir"

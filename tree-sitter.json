@@ -6,9 +6,7 @@
       "camelcase": "CDDL",
       "title": "CDDL",
       "scope": "source.cddl",
-      "file-types": [
-        "cddl"
-      ],
+      "file-types": ["cddl"],
       "injection-regex": "^cddl$",
       "class-name": "TreeSitterCddl"
     }

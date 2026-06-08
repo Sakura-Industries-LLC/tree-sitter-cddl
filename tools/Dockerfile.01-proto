@@ -10,6 +10,10 @@ ENV MOON_TOOLCHAIN_FORCE_GLOBALS=true
 
 # install proto toolchain manager
 #   and every tool pinned in .prototools in one cacheable layer
+RUN echo "ipv4" >> ~/.curlrc \
+    && echo "max-time = 240" >> ~/.curlrc \
+    && echo "connect-timeout = 60" >> ~/.curlrc
+
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- ${PROTO_VERSION} --yes \
     && proto install \
     && npm config set prefix /root/.proto \
