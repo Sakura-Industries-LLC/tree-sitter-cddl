@@ -1,0 +1,5 @@
+$schema: "./cache/schemas/workspace.json"
+defaultProject: "root"
+
+projects:
+  root: "."

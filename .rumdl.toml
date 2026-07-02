@@ -1,0 +1,98 @@
+[global]
+disable = ["MD060", "MD041"]
+
+[MD003]
+style = "atx"
+
+[MD004]
+style = "asterisk"
+
+[MD007]
+indent = 4
+start-indent = 4
+start-indented = false
+style = "fixed"
+
+[MD009]
+br-spaces = 2
+list-item-empty-lines = false
+strict = false
+
+[MD010]
+spaces-per-tab = 3
+
+[MD012]
+maximum = 1
+
+[MD013]
+code-blocks = true
+headings = true
+line-length = 132
+strict = false
+tables = false
+reflow = true
+reflow-mode = "semantic-line-breaks"
+
+[MD022]
+lines-above = 1
+lines-below = 1
+
+[MD024]
+siblings-only = true
+
+[MD025]
+front-matter-title = "^\\s*title\\s*[:=]"
+level = 1
+
+[MD026]
+punctuation = ".,;:!。，；：！"
+
+[MD029]
+style = "one_or_ordered"
+
+[MD030]
+ol-multi = 1
+ol-single = 1
+ul-multi = 1
+ul-single = 1
+
+[MD031]
+list-items = true
+
+[MD033]
+allowed-elements = ["br"]
+
+[MD035]
+style = "---"
+
+[MD036]
+punctuation = ".,;:!?。，；：！？"
+
+[MD040]
+style = "consistent"
+allowed-languages = []
+unknown-language-action = "error"
+
+[MD043]
+headings = ["+"]
+match-case = false
+
+[MD044]
+code-blocks = true
+html-elements = true
+names = []
+
+[MD046]
+style = "consistent"
+
+[MD048]
+style = "backtick"
+
+[MD049]
+style = "asterisk"
+
+[MD050]
+style = "asterisk"
+
+[MD053]
+ignored-definitions = ["//"]
