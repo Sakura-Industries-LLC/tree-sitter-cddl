@@ -9,7 +9,7 @@ The grammar is defined in `grammar.js`; everything in `src/` is generated.
 ## Mandatory Execution Model
 
 **Agents never run tools directly on the host.**
-All work must go through the Docker container, invoked via the Justfile:
+All work must go through the Podman container, invoked via the Justfile:
 
 ```bash
 # Run CI pipeline (markdown check, spell check, generate, build, test)

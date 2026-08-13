@@ -49,7 +49,7 @@ zig-out/
 
 # Moon cache
 .moon/cache/
-.moon/docker-cache/
+.moon/container-cache
 
 # Tool builds
 tools/target/
