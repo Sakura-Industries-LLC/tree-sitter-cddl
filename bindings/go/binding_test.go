@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	tree_sitter "github.com/tree-sitter/go-tree-sitter"
-	tree_sitter_cddl "codeberg.org/SakuraIndustries/tree-sitter-cddl/bindings/go"
+	tree_sitter_cddl "github.com/Sakura-Industries-LLC/tree-sitter-cddl/bindings/go"
 )
 
 func TestCanLoadGrammar(t *testing.T) {

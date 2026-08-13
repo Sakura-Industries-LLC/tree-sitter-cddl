@@ -99,8 +99,7 @@ All are templates keyed off `tree-sitter generate`.
 
 1. **`src/` doesn't exist after clone.**
    Run `tree-sitter generate` first (inside container).
-2. **Bash process substitution `<( )` fails in Dockerfiles.**
-   `RUN` uses `/bin/sh` (dash on Debian).
+2. **Bash process substitution `<( )` fails in `Dockerfiles.**` `RUN` uses `/bin/sh` (dash on Debian).
    Use pipes: `curl ... | bash -s --` instead of `bash <(curl ...)`.
 3. **Tree-sitter version split.**
    CLI `^0.26.9` (dev), runtime `^0.25.0` (deps).
