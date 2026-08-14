@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.13)
 project(tree-sitter-cddl
         VERSION "0.1.0"
         DESCRIPTION "Tree-sitter grammar for CDDL, the Concise Data Definition Language for CBOR and JSON data structures."
-        HOMEPAGE_URL "https://codeberg.org/SakuraIndustries/tree-sitter-cddl"
+        HOMEPAGE_URL "https://github.com/Sakura-Industries-LLC/tree-sitter-cddl"
         LANGUAGES C)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)

@@ -4,15 +4,19 @@ autoexamples
 binstall
 BINSTALL
 bstr
+buuid
+buuidv
 cborseq
 CDDL
 cddlc
 CDNI
 CBOR
+CBORK
+COSE
 cflags
+cose
 cibuildwheel
 cmdclass
-codeberg
 codegen
 codepoint
 codepoints
@@ -96,5 +100,6 @@ Tree-Sitter
 treesit
 tstr
 tzdata
+uuidv
 Wmissing
 Wunused

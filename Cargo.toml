@@ -7,7 +7,7 @@ license = "MIT OR Apache-2.0"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "cddl"]
 categories = ["parser-implementations", "parsing", "text-editors"]
-repository = "https://codeberg.org/SakuraIndustries/tree-sitter-cddl"
+repository = "https://github.com/Sakura-Industries-LLC/tree-sitter-cddl"
 edition = "2021"
 autoexamples = false
 

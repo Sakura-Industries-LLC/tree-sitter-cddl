@@ -1,6 +1,6 @@
 # tree-sitter-cddl
 
-[![CI][ci]](https://codeberg.org/SakuraIndustries/tree-sitter-cddl/actions)
+[![CI][ci]](https://github.com/Sakura-Industries-LLC/tree-sitter-cddl/actions)
 [![npm][npm]](https://www.npmjs.com/package/tree-sitter-cddl) [![crates.io][crates]](https://crates.io/crates/tree-sitter-cddl)
 [![pypi][pypi]](https://pypi.org/project/tree-sitter-cddl/)
 
@@ -18,7 +18,7 @@ and structural parsing for `.cddl` files in any editor that supports tree-sitter
 -- requires nvim-treesitter
 require("nvim-treesitter.parsers").get_parser_configs().cddl = {
   install_info = {
-    url = "https://codeberg.org/SakuraIndustries/tree-sitter-cddl",
+    url = "https://github.com/Sakura-Industries-LLC/tree-sitter-cddl",
     files = { "src/parser.c" },
     branch = "master",
   },
@@ -30,7 +30,7 @@ require("nvim-treesitter.parsers").get_parser_configs().cddl = {
 
 ```elisp
 (add-to-list 'treesit-language-source-alist
-             '(cddl "https://codeberg.org/SakuraIndustries/tree-sitter-cddl"))
+             '(cddl "https://github.com/Sakura-Industries-LLC/tree-sitter-cddl"))
 ```
 
 ### Zed
@@ -96,7 +96,7 @@ tree-sitter playground     # Open interactive playground in browser
 Licensed under either of Apache License 2.0 or MIT License at your option.
 
 [tree-sitter]: https://tree-sitter.github.io/
-[ci]: https://ci.codeberg.org/api/badges/SakuraIndustries/tree-sitter-cddl/status.svg
+[ci]: https://img.shields.io/github/actions/workflow/status/Sakura-Industries-LLC/tree-sitter-cddl/ci.yml?label=CI
 [npm]: https://img.shields.io/npm/v/tree-sitter-cddl?logo=npm&label=npm
 [crates]: https://img.shields.io/crates/v/tree-sitter-cddl?logo=rust&label=crates.io
 [pypi]: https://img.shields.io/pypi/v/tree-sitter-cddl?logo=python&label=pypi

@@ -1,4 +1,4 @@
-module codeberg.org/SakuraIndustries/tree-sitter-cddl
+module github.com/Sakura-Industries-LLC/tree-sitter-cddl
 
 go 1.22
 

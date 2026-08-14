@@ -1,5 +1,5 @@
 LANGUAGE_NAME := tree-sitter-cddl
-HOMEPAGE_URL := https://codeberg.org/SakuraIndustries/tree-sitter-cddl
+HOMEPAGE_URL := https://github.com/Sakura-Industries-LLC/tree-sitter-cddl
 VERSION := 0.1.0
 
 # repository
