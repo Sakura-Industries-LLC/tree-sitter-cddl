@@ -195,24 +195,28 @@ export default grammar({
     byte_string: ($) =>
       token(seq("h'", repeat(choice(/[0-9A-Fa-f ]/, /[0-9A-Fa-f]/)), "'")),
 
-    simple_value: ($) => token(choice("true", "false", "null", "undefined")),
+    simple_value: ($) =>
+      token(prec(1, choice("true", "false", "null", "undefined"))),
 
     keyword: ($) =>
       token(
-        choice(
-          "any",
-          "bstr",
-          "bytes",
-          "tstr",
-          "text",
-          "uint",
-          "nint",
-          "int",
-          "float",
-          "bool",
-          "value",
-          "type",
-          "group",
+        prec(
+          1,
+          choice(
+            "any",
+            "bstr",
+            "bytes",
+            "tstr",
+            "text",
+            "uint",
+            "nint",
+            "int",
+            "float",
+            "bool",
+            "value",
+            "type",
+            "group",
+          ),
         ),
       ),
   },

@@ -1,0 +1,486 @@
+==================
+CBORK directives and RFC control operators
+==================
+
+;! # RFC8610 defined types
+;!
+;! This library provides UUID definitions used by CBORK schemas.
+;@ CBORK: Library
+;# import rfc9052 as cose
+rfc8610 = buuid / uuid-string-abnf
+buuid = #6.37(buuid-all)
+buuidv4 = bstr .abnfb uuidv4-abnf
+buuid-other = bstr .size 16
+
+---
+
+(source_file
+  (doc_comment_block
+    (doc_comment))
+  (doc_comment_block
+    (doc_comment))
+  (doc_comment_block
+    (doc_comment))
+  (custom_directive)
+  (standard_directive)
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (choice_expression
+        (sequence_expression
+          (primary
+            (reference
+              (identifier))))
+        (sequence_expression
+          (primary
+            (reference
+              (identifier)))))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (tag_expression
+        (number)
+        (expression
+          (primary
+            (reference
+              (identifier)))))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (ctlop_expression
+        (primary
+          (keyword))
+        (ctlop)
+        (primary
+          (reference
+            (identifier))))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (ctlop_expression
+        (primary
+          (keyword))
+        (ctlop)
+        (primary
+          (number))))))
+
+==================
+Maps arrays and tagged values
+==================
+
+registration = {
+  version: 1,
+  name: tstr,
+  digest: bstr .size 32,
+  identifier: #6.37(bstr),
+  recipients: [tstr, uint, #6.55799(any),],
+}
+
+---
+
+(source_file
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (group
+        (map_group
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (primary
+                (number))))
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (primary
+                (keyword))))
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (ctlop_expression
+                (primary
+                  (keyword))
+                (ctlop)
+                (primary
+                  (number)))))
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (tag_expression
+                (number)
+                (expression
+                  (primary
+                    (keyword))))))
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (group
+                (array_group
+                  (expression
+                    (primary
+                      (keyword)))
+                  (expression
+                    (primary
+                      (keyword)))
+                  (expression
+                    (tag_expression
+                      (number)
+                      (expression
+                        (primary
+                          (keyword))))))))))))))
+
+==================
+Generic definitions and qualified references
+==================
+
+envelope<T, U> = {
+  payload: T,
+  metadata: container<U>,
+  encrypted: cose.COSE_Encrypt0,
+}
+
+---
+
+(source_file
+  (rule
+    (rule_name
+      (identifier))
+    (generic_params
+      (identifier)
+      (identifier))
+    (expression
+      (group
+        (map_group
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (primary
+                (reference
+                  (identifier)))))
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (primary
+                (parameterized_reference
+                  (reference
+                    (identifier))
+                  (generic_args
+                    (identifier))))))
+          (map_entry
+            (member_key
+              (identifier))
+            (expression
+              (primary
+                (reference
+                  (dotted_identifier
+                    (identifier)
+                    (identifier)))))))))))
+
+==================
+Choices sequences and parenthesized expressions
+==================
+
+key-material = public-key / private-key / shared-secret
+sequence = [header, payload, signature]
+parenthesized = (header / trailer)
+
+---
+
+(source_file
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (choice_expression
+        (sequence_expression
+          (primary
+            (reference
+              (identifier))))
+        (sequence_expression
+          (primary
+            (reference
+              (identifier))))
+        (sequence_expression
+          (primary
+            (reference
+              (identifier)))))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (group
+        (array_group
+          (expression
+            (primary
+              (reference
+                (identifier))))
+          (expression
+            (primary
+              (reference
+                (identifier))))
+          (expression
+            (primary
+              (reference
+                (identifier))))))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (paren_expression
+        (expression
+          (choice_expression
+            (sequence_expression
+              (primary
+                (reference
+                  (identifier))))
+            (sequence_expression
+              (primary
+                (reference
+                  (identifier))))))))))
+
+==================
+CDDL literal values
+==================
+
+literal-values = [
+  0, -17, 3.14, 1.5e+10,
+  "hello", "line\\nnext", h'dead beef',
+  true, false, null, undefined,
+]
+
+---
+
+(source_file
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (group
+        (array_group
+          (expression
+            (primary
+              (number)))
+          (expression
+            (primary
+              (number)))
+          (expression
+            (primary
+              (number)))
+          (expression
+            (primary
+              (number)))
+          (expression
+            (primary
+              (string)))
+          (expression
+            (primary
+              (string)))
+          (expression
+            (primary
+              (byte_string)))
+          (expression
+            (primary
+              (simple_value)))
+          (expression
+            (primary
+              (simple_value)))
+          (expression
+            (primary
+              (simple_value)))
+          (expression
+            (primary
+              (simple_value))))))))
+
+==================
+Comments empty groups and member key forms
+==================
+
+; An ordinary CDDL comment
+;; A second ordinary comment
+empty-map = {}
+empty-array = []
+member-keys = {
+  1: uint,
+  -1: nint,
+  "name": tstr,
+  h'ab': bstr,
+  cose.algorithm: int,
+}
+
+---
+
+(source_file
+  (comment)
+  (comment)
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (group
+        (map_group))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (group
+        (array_group))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (group
+        (map_group
+          (map_entry
+            (member_key
+              (number))
+            (expression
+              (primary
+                (keyword))))
+          (map_entry
+            (member_key
+              (number))
+            (expression
+              (primary
+                (keyword))))
+          (map_entry
+            (member_key
+              (string))
+            (expression
+              (primary
+                (keyword))))
+          (map_entry
+            (member_key
+              (byte_string))
+            (expression
+              (primary
+                (keyword))))
+          (map_entry
+            (member_key
+              (dotted_identifier
+                (identifier)
+                (identifier)))
+            (expression
+              (primary
+                (keyword)))))))))
+
+==================
+Built-in CDDL keywords
+==================
+
+builtins = [any, bstr, bytes, tstr, text, uint, nint, int, float, bool, value, type, group]
+
+---
+
+(source_file
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (group
+        (array_group
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword)))
+          (expression
+            (primary
+              (keyword))))))))
+
+==================
+Serialization validation and encoding control operators
+==================
+
+serialized = bstr .cbor payload
+bounded = uint .ge 0
+pattern = tstr .regexp "[a-z]+"
+encoded = bstr .x-enc.abnf abnf-rule
+
+---
+
+(source_file
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (ctlop_expression
+        (primary
+          (keyword))
+        (ctlop)
+        (primary
+          (reference
+            (identifier))))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (ctlop_expression
+        (primary
+          (keyword))
+        (ctlop)
+        (primary
+          (number)))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (ctlop_expression
+        (primary
+          (keyword))
+        (ctlop)
+        (primary
+          (string)))))
+  (rule
+    (rule_name
+      (identifier))
+    (expression
+      (ctlop_expression
+        (primary
+          (keyword))
+        (ctlop)
+        (primary
+          (reference
+            (identifier)))))))
